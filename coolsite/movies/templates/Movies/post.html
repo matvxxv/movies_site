@@ -1,0 +1,34 @@
+{% extends 'Movies/base.html' %}
+{% block content %}
+<div class="content__selected-film">
+	<div class="selected-film__title">
+		<div class="selected-film__name">{{ post.name }}</div>
+		<div class="selected-film__prod_name">реж. {{ post.prod.name }}</div>
+	</div>
+	<div class="selected-film__body">
+		{% if post.content_photo_first %}
+		<div class="selected-film__image">
+			<img src="{{ post.content_photo_first.url}}" alt="">
+		</div>
+		{% endif %}
+		<div class="selected-film__text">
+			{% for t in text1 %}
+				<p>{{ t }}</p>
+			{% endfor %}
+		</div>
+		{% if post.content_photo_second %}
+		<div class="selected-film__image">
+			<img src="{{ post.content_photo_second.url }}" alt="">
+		</div>
+		{% endif %}
+		<div class="selected-film__text">
+			{% for t in text2 %}
+			<p>{{ t }}</p>
+			{% endfor %}
+
+			<p class="source">Автор\Источник: <span>{{post.content_source}}</span></p>
+
+		</div>
+	</div>
+</div>
+{% endblock %}
