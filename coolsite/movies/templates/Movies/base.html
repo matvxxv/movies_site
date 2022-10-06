@@ -17,7 +17,12 @@
 						{% for m in menu %}
 							<li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
 						{% endfor %}
-						{% endblock %}
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}">Выйти</a></li>
+						{% else %}
+						<li><a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Войти</a></li>
+						{% endif %}
+						{% endblock mainmenu%}
 					</ul>
 				</div>
 			</header>
@@ -26,6 +31,28 @@
 					{% block content %}
 					{% endblock %}
                 </div>
+				{% if page_obj.has_other_pages %}
+				<div class="list-pages">
+					<div class="container">
+						<ul class="list-pages__list">
+							{% if page_obj.has_previous %}
+							<li><a href="?page={{ page_obj.previuous_page_number }}">&lt</a></li>
+							{% endif %}
+							{% for p in paginator.page_range %}
+							{% if page_obj.number == p %}
+							<li class="choosen">{{p}}</li>
+							{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+							<li><a href="?page={{p}}">{{p}}</a></li>
+							{% endif %}
+							{% endfor %}
+							{% if page_obj.has_next %}
+							<li><a href="?page={{ page_obj.next_page_number }}">&gt</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				{% endif %}
+
             </div>
 			<footer class="footer">
 				<div class="container">

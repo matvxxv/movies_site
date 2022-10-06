@@ -248,6 +248,11 @@ body {
 .content__addpage {
   padding: 50px 200px;
 }
+.content__addpage h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 22px;
+}
 .content__addpage p {
   padding: 10px 0;
   font-size: 20px;
@@ -258,27 +263,24 @@ body {
 }
 .content__addpage p textarea {
   margin: 30px 0;
-}
-.content__addpage h1{
-    text-align: center;
-    font-size: 24px;
-    margin: 20px 0;
+  font-size: 18px;
+  padding: 15px;
 }
 .content__addpage label {
   display: inline-block;
   margin: 0 0 50px 0;
 }
+
 .content__addpage input {
   margin: 30px 0;
-}
-.content__addpage input[type=text] {
   padding: 15px;
   font-size: 18px;
   -webkit-box-shadow: 0 0 5px #000;
           box-shadow: 0 0 5px #000;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
 }
-.content__addpage button {
+
+button {
   padding: 15px 20px;
   font-size: 20px;
   color: #fff;
@@ -287,11 +289,11 @@ body {
   -webkit-box-shadow: 0 5px 5px #000;
           box-shadow: 0 5px 5px #000;
 }
-.content__addpage button:hover {
+button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   text-shadow: 0 2px 10px #80FFEE;
 }
-.content__addpage button:active {
+button:active {
   position: relative;
   top: 5px;
   -webkit-box-shadow: 0 2px 2px #000;
@@ -300,36 +302,6 @@ body {
 .content__addpage select {
   margin: 40px 0;
   padding: 10px;
-}
-.content__addpage-film {
-  margin: 100px;
-  zoom: 40%;
-}
-.content__addpage-film h2 {
-  font-size: 60px;
-  margin: 0 0 60px 0;
-}
-
-.addpage_image {
-  overflow: hidden;
-  min-width: 1100px;
-}
-.addpage_text {
-  overflow: hidden;
-  min-height: 100%;
-  height: 545px;
-  position: relative;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgba(55, 55, 55, 0)), color-stop(61.46%, rgba(11, 11, 11, 0.6)));
-  background: linear-gradient(180deg, rgba(55, 55, 55, 0) 10%, rgba(11, 11, 11, 0.6) 61.46%);
-  z-index: 1;
-  top: -540px;
-}
-.addpage_text:hover {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgba(55, 55, 55, 0)), color-stop(61.46%, rgba(11, 11, 11, 0.8)));
-  background: linear-gradient(180deg, rgba(55, 55, 55, 0) 10%, rgba(11, 11, 11, 0.8) 61.46%);
-}
-.addpage_text:hover .film__name {
-  text-shadow: 0 2px 10px #80FFEE;
 }
 
 .content__selected-film {
@@ -378,6 +350,90 @@ body {
 .selected-film__text p.source span {
   font-style: italic;
 }
+
+.list-pages__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 20px;
+}
+.list-pages__list li {
+  margin: 0 30px 0 0;
+}
+.list-pages__list li.choosen {
+  text-decoration: underline;
+}
+.list-pages__list li a {
+  color: #000;
+}
+.list-pages__list li a:hover {
+  text-shadow: 0 0 4px #000;
+}
+.list-pages__list li a:active {
+  text-decoration: underline;
+}
+.register_block p {
+    margin: 30px 0;
+}
+.register_block p label{
+    margin: 0 25px 0 0;
+    font-size: 16px;
+}
+.register_block form{
+    padding: 0 100px;
+}
+.register_block__title{
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+.auth_user__body {
+  margin: 40px 0;
+}
+.auth_user__title {
+  text-align: center;
+  font-size: 22px;
+}
+.auth_user__form {
+  margin: 30px 0;
+  text-align: center;
+}
+.auth_user__form form {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+.auth_user__form input {
+  -webkit-box-shadow: 0 0 3px #80FFEE;
+          box-shadow: 0 0 3px #80FFEE;
+  margin: 0 0 10px 0;
+  padding: 10px;
+  font-size: 18px;
+  display: block;
+}
+.auth_user__form input:focus {
+  -webkit-box-shadow: 0 0 8px #80FFEE;
+          box-shadow: 0 0 8px #80FFEE;
+}
+.auth_user__form button {
+  margin: 20px 0;
+}
+.auth_user__register-link p {
+  line-height: 22px;
+  font-size: 15px;
+}
+.auth_user__register-link p a:hover {
+  text-decoration: underline;
+}
+
+.form-error{
+    font-size: 15px;
+    margin: 30px;
+}
+
 
 .footer {
   padding: 30px 0;

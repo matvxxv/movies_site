@@ -21,7 +21,7 @@ class Movies(models.Model):
     class Meta:
         verbose_name = 'Фильмы'
         verbose_name_plural = 'Фильмы'
-        ordering = ['time_create', 'name']
+        ordering = ['id']
 
     def get_absolute_url(self):
         return reverse('post', kwargs = {'post_slug': self.slug})
