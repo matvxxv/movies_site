@@ -2,30 +2,38 @@
 
 {% block content %}
 <div class="content__search">
-	<form action="{% url 'home' %}" method="GET">
-		<input type="text" name="search_film" placeholder="Введите имя режиcсера или название фильма...">
+	<form action="{% url 'search' %}" method="GET">
+		<input type="text" name="q" value="{{ request.GET.q }}" placeholder="Введите имя режиcсера или название фильма...">
 	</form>
 </div>
 <div class="content__lyrics">
 	<p>У каждого фильма должен быть свой мир, логика и чувство, выходящее за рамки точного образа, который видит аудитория.</p>
 	<p>Кристофер Нолан</p>
+	<p>{{ results }}</p>
 </div>
+
 <div class="content__hint">*Тыкни на пост, чтобы прочитать подробнее</div>
 <div class="content__body">
+	{% if posts %}
 	{% for p in posts %}
 	<div class="content__film">
 		<div class="film__body">
 			<div class="film__image">
 				<img src="{{ p.photo.url }}" alt="">
-			</div>
-			<div class="film__text">
-				<a href="{{ p.get_absolute_url }}">
-					<div class="film__title">{{ p.title }}</div>
-					<div class="film__name">{{ p.name }}</div>
-				</a>
+				<div class="film__text">
+					<a href="{{ p.get_absolute_url }}">
+						<div class="film__title">{{ p.title }}</div>
+						<div class="film__name">{{ p.name }}</div>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 	{% endfor %}
+	{% else %}
+	<div class="content__nothing success_page__title">
+        <h2>Ничего не найдено</h2>
+    </div>
+	{% endif %}
 </div>
 {% endblock %}

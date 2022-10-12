@@ -21,7 +21,8 @@ from movies.views import pageNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('movies.urls'))
+    path('', include('movies.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:

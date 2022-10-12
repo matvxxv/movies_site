@@ -1,6 +1,6 @@
 {% extends 'Movies/base.html' %}
 {% block content %}
-<div class="content__selected-film">
+<div class="selected-film">
 	<div class="selected-film__title">
 		<div class="selected-film__name">{{ post.name }}</div>
 		<div class="selected-film__prod_name">реж. {{ post.prod.name }}</div>
@@ -25,9 +25,7 @@
 			{% for t in text2 %}
 			<p>{{ t }}</p>
 			{% endfor %}
-
 			<p class="source">Автор\Источник: <span>{{post.content_source}}</span></p>
-
 		</div>
 	</div>
 </div>

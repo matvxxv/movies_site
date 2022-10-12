@@ -1,3 +1,4 @@
+from django.contrib.admin.templatetags.admin_list import pagination
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
@@ -5,11 +6,14 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.http import request
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.urls import reverse_lazy
+from django.db.models import Q
 from .models import *
 from .forms import AddPostForm, RegisterUserForm, LoginUserForm
 from .utils import *
 
 
+# DataMixin в utils.py
+# Формируем страницу с постами
 class MoviesHome(DataMixin,ListView):
     paginate_by = 3
     model = Movies
@@ -25,15 +29,27 @@ class MoviesHome(DataMixin,ListView):
     # Добавить поиск по режиссеру
 
     def get_queryset(self):
-        query = self.request.GET.get('search_film')
-        if query:
-            a = Movies.objects.filter(name__icontains = query)
-            if a:
-                return a
-        else:
-            return Movies.objects.filter(is_published = True)
+        # query = self.request.GET.get('q')
+        # if query:
+        #     results = self.model.objects.filter(Q(name__icontains = query)|Q(prod__name__icontains = query))
+        #     if results:
+        #         return results
+        #     else:
+        #         return redirect('nothing')
+        # else:
+        return Movies.objects.filter(is_published = True)
 
 
+def search(request):
+    try:
+        query = request.GET.get('q')
+        results = Movies.objects.filter(Q(name__icontains=query) | Q(prod__name__icontains=query) & Q(is_published = True))
+        context = {'menu': menu,'posts': results, 'q': query, 'title': query}
+        return render(request, 'Movies/index.html', context=context)
+    except KeyError:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+
+# Страница с конкретным фильмом (Пост)
 class ShowPost(DataMixin,DetailView):
     model = Movies
     context_object_name = 'post'
@@ -49,7 +65,7 @@ class ShowPost(DataMixin,DetailView):
         context |= c_def
         return context
 
-
+# Страница "О сайте"
 def about(request):
     context = {
         'menu': menu,
@@ -57,10 +73,12 @@ def about(request):
     }
     return render(request, 'Movies/about.html', context=context)
 
+
+# Страница с формой добавления статьи
 class AddPage(CreateView):
     form_class = AddPostForm
     template_name = 'Movies/addpage.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('success')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,6 +87,7 @@ class AddPage(CreateView):
         return context
 
 
+# Страница с формой регистрации
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
     template_name = 'Movies/register.html'
@@ -85,6 +104,7 @@ class RegisterUser(DataMixin, CreateView):
         login(self.request, user)
         return redirect('home')
 
+# Страница с входом в аккаунт
 class LoginUser(DataMixin, LoginView):
     form_class = LoginUserForm
     template_name = 'Movies/login.html'
@@ -98,9 +118,22 @@ class LoginUser(DataMixin, LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
+# Страница, появляющаяся после успешного добавления статьи через addpage
+def success_page(request):
+    context ={
+        'menu': menu,
+        'title': 'Спасибо!',
+    }
+    return render(request, 'Movies/success_add_page.html', context=context)
+
+
+# Выход из аккаунта
+
 def logout_func(request):
     logout(request)
     return redirect('home')
+
+
 def pageNotFound(request, exception):
     return HttpResponseNotFound('Страница не найдена')
 

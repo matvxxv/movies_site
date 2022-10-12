@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from captcha.fields import CaptchaField
 
 from .models import *
 from django.core.exceptions import ValidationError
@@ -21,6 +22,9 @@ class AddPostForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'cols': 60, 'rows': 10, 'placeholder': 'Текст статьи...'}),
             'content_source':forms.TextInput(attrs={"class": 'form-input','placeholder': 'Источник...'}),
         }
+
+    captcha = CaptchaField()
+
     def clean_title(self):
         title = self.cleaned_data['title']
         if len(title) > 100:

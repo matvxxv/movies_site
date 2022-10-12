@@ -2,16 +2,21 @@
 {% extends 'Movies/base.html' %}
 {% block content %}
 
-<div class="content__addpage">
+<div class="content__addpage addpage">
     <h2>Добавление статьи</h2>
     <form action="{% url 'add_page' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-error">{{ form.non_field_errors }}</div>
         {% for f in form %}
+        {% if 'photo' in f.name %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% else %}
             <p><label class="form-label" for="{{ f.id_for_label }}"></label>{{ f }}</p>
         <div class="form-error">{{ f.errors }}</div>
+        {% endif %}
         {% endfor %}
-        <button type = 'submit', class="button">Добавить</button>
+        <button type = 'submit' class="button">Добавить</button>
     </form>
 </div>
 

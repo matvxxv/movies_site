@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'movies.apps.MoviesConfig',
 
     'debug_toolbar',
+    'captcha',
 
 ]
 
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'coolsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,3 +155,8 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'movies_cache'),
     }
 }
+
+CAPTCHA_FONT_SIZE = 30
+CAPTCHA_LETTER_ROTATION = (-10,10)
+CAPTCHA_BACKGROUND_COLOR = '#931010'
+CAPTCHA_FOREGROUND_COLOR = '#ffffff'
