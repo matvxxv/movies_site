@@ -120,6 +120,10 @@ body {
   }
 }
 @media (max-width: 992px) {
+  .header {
+    font-size: 0.9em;
+  }
+
   .container {
     max-width: 800px;
   }
@@ -135,16 +139,12 @@ body {
   .content__film {
     font-size: 1em;
   }
-
-  .addpage {
-    font-size: 0.9em;
-  }
-
-  .selected-film {
-    font-size: 0.8em;
-  }
 }
 @media (max-width: 767px) {
+  .header {
+    font-size: 0.8em;
+  }
+
   .container {
     max-width: none;
   }
@@ -164,22 +164,18 @@ body {
   .footer {
     font-size: 0.7em;
   }
-
-  .addpage {
-    font-size: 0.8em;
-  }
-
-  .selected-film {
-    font-size: 0.6em;
-  }
 }
 @media (max-width: 535px) {
+  .header {
+    font-size: 0.65em;
+  }
+
   .content__film {
     font-size: 0.5em;
   }
 
-  .selected-film {
-    font-size: 0.5em;
+  .content__search {
+    font-size: 0.6em;
   }
 }
 
@@ -192,7 +188,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  font-size: 1.25rem;
+  font-size: 1.25em;
   padding: 2.2rem 3rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   gap-row: 10px;

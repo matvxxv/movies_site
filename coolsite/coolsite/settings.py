@@ -16,10 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-dy0=299l*q5r!rm$cmhq61olx+6l_5_1a2k^a5q9k2u#te+@hc'
 
@@ -84,7 +80,6 @@ WSGI_APPLICATION = 'coolsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -156,7 +151,11 @@ CACHES = {
     }
 }
 
+
+
+
 CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LETTER_ROTATION = (-10,10)
 CAPTCHA_BACKGROUND_COLOR = '#931010'
 CAPTCHA_FOREGROUND_COLOR = '#ffffff'
+
