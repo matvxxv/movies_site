@@ -1,0 +1,15 @@
+{% extends 'Movies/base.html' %}
+{% block content %}
+<div class="success_page">
+    <div class="sucess_page__body">
+        <div class="success_page__title">
+            <h2>Ваша статья отправлена на модерацию</h2>
+            <h3>Большое спасибо</h3>
+        </div>
+        <div class="success_page__row">
+            <a href="{% url 'home' %}">На главную</a>
+            <a href="{% url 'add_page' %}">Добавить еще</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'Movies/base.html' %}
+
+{% block content %}
+<div class="register_block addpage">
+  <h2 class="register_block__title">{{ title }}</h2>
+  <form method="post" class="register_block__form">
+    {% csrf_token %}
+    {% for f in form %}
+    <p><label for="{{ f.id_for_label }}" class="form-label"></label>{{f}}</p>
+    <div class="form-error">{{f.errors}}</div>
+    {% endfor %}
+    <button type = 'submit' class="button">Регистрация</button>
+  </form>
+</div>
+{% endblock %}

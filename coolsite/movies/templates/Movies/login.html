@@ -1,0 +1,22 @@
+{% extends 'Movies/base.html' %}
+{% block content %}
+<div class="auth_user">
+	<div class="auth_user__body addpage">
+		<div class="auth_user__title"><h2>Авторизация</h2></div>
+		<div class="auth_user__form">
+			<form method="post">
+				{% csrf_token %}
+				<p><input type="text" name = "username" class = "login_form" placeholder="Username..."
+						  maxlength="150" required="" id="id_username"></p>
+				<p><input type="password" name="password" class="login_form" placeholder="Password..." required="" id="id_password"></p>
+				<p><button type="submit">Войти</button></p>
+			</form>
+			<div class="form-error">{{ form.non_field_errors }}</div>
+			<div class="auth_user__register-link">
+				<p>Нет аккаунта?</p>
+				<p><a href="{% url 'register' %}">Регистрация</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
